@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ UTF-8 Validation module"""
 
+
 def validUTF8(data):
     """
     This function checks whether a given list of integers
