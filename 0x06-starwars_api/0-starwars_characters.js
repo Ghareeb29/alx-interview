@@ -12,7 +12,7 @@ const movieId = process.argv[2];
 const baseUrl = 'https://swapi-api.alx-tools.com/api';
 
 // Function to fetch character name from URL
-function getCharacterName(url) {
+function getCharacterName (url) {
   return new Promise((resolve, reject) => {
     request(url, (error, response, body) => {
       if (error) {
@@ -26,7 +26,7 @@ function getCharacterName(url) {
 }
 
 // Main function to fetch and print characters
-function fetchAndPrintCharacters(movieId) {
+function fetchAndPrintCharacters (movieId) {
   const filmUrl = `${baseUrl}/films/${movieId}/`;
 
   request(filmUrl, async (error, response, body) => {
