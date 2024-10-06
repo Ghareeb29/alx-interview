@@ -35,13 +35,16 @@ carrie@ubuntu:~/0x08-making_change$ ./0-main.py
 carrie@ubuntu:~/0x08-making_change$
 ```
 
-This implementation uses dynamic programming to solve the coin change problem efficiently. Here's a breakdown of the solution:
-
 1. We first check if the total is 0 or less, in which case we return 0.
-2. We create a dynamic programming array `dp` where `dp[i]` represents the minimum number of coins needed to make change for amount `i`.
-3. We initialize all values in `dp` to infinity, except `dp[0]` which is set to 0 (it takes 0 coins to make a total of 0).
-4. We then iterate through all amounts from 1 to `total`.
-5. For each amount, we try all coin denominations and update `dp[i]` with the minimum number of coins needed.
-6. Finally, we return `dp[total]` if a solution was found, or -1 if it's impossible to make change for the given total.
+2. We sort the coins in descending order to start with the largest denominations.
+3. We iterate through each coin denomination:
+   - For each coin, we use as many of that coin as possible (using integer division).
+   - We keep track of the total number of coins used and the remaining amount.
+4. If at any point the remaining amount becomes 0, we return the total number of coins used.
+5. If we've gone through all coins and still haven't reached the total, we return -1.
 
-This solution has a time complexity of O(total * len(coins)) and a space complexity of O(total), which is efficient for most practical cases.
+The time complexity of this solution is O(n log n) due to the sorting step, where n is the number of coin denominations. However, the actual coin selection process is O(n), which is very fast even for large totals.
+
+The space complexity is O(1) as we only use a constant amount of extra space.
+
+This greedy approach works correctly for standard coin systems (like US coins: 1, 5, 10, 25 cents) where the greedy choice always leads to the optimal solution. However, it's worth noting that for some non-standard coin systems, this greedy approach might not always give the optimal solution. In those rare cases, the dynamic programming approach would be more accurate.
