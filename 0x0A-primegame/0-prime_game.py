@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Prime Game module """
 
+
 def isWinner(x, nums):
     """
     Determine the winner of the Prime Game for multiple rounds.
@@ -12,6 +13,8 @@ def isWinner(x, nums):
 
     def sieve_of_eratosthenes(n):
         """Generate primes up to n using the Sieve of Eratosthenes."""
+        if n < 2:
+            return []
         primes = [True] * (n + 1)
         primes[0] = primes[1] = False
         for i in range(2, int(n**0.5) + 1):
@@ -22,11 +25,13 @@ def isWinner(x, nums):
 
     def play_game(n):
         """Simulate a single game and return the winner."""
+        if n < 2:
+            return "Ben"  # No prime numbers available, Maria can't move
         primes = sieve_of_eratosthenes(n)
         moves = sum(1 for i in range(2, n + 1) if primes[i])
         return "Maria" if moves % 2 == 1 else "Ben"
 
-    if not nums or x != len(nums):
+    if not nums or x <= 0 or x != len(nums) or any(n < 0 for n in nums):
         return None
 
     maria_wins = ben_wins = 0
