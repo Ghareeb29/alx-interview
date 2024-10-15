@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+""" Prime Game module """
 
 def isWinner(x, nums):
     """
